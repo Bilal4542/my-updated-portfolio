@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Mode Tokens */
+    --color-background: #f7f7f3;
+    --color-foreground: #17191c;
+    --color-muted: #66707a;
+    --color-accent: #8b5cf6;
+    --color-accent-hover: #7c3aed;
+    
+    --color-border: rgba(0, 0, 0, 0.08);
+    --color-surface: #ffffff;
+    --color-glass: rgba(255, 255, 255, 0.8);
+    --color-accent-transparent: rgba(139, 92, 246, 0.1);
+    
+    /* Layout & Styling */
+    --radius-base: 0.5rem;
+    --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    /* Dark Mode Tokens */
+    --color-background: #0b0d10;
+    --color-foreground: #f1f3f5;
+    --color-muted: #9aa3ad;
+    --color-accent: #8b5cf6;
+    --color-accent-hover: #a78bfa;
+    
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-surface: #13151a;
+    --color-glass: rgba(19, 21, 26, 0.8);
+    --color-accent-transparent: rgba(139, 92, 246, 0.15);
+    
+    /* Shadows adjust for dark mode */
+    --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased transition-colors duration-300;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    background-color: var(--color-glass);
+    @apply backdrop-blur-md border border-border shadow-soft;
+  }
+}
