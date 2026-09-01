@@ -1,25 +1,20 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
 import AppLayout from './components/layout/AppLayout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Projects from './pages/Projects';
 import Resume from './pages/Resume';
 import Contact from './pages/Contact';
-import NotFound from './pages/NotFound';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<AppLayout />}>
-        <Route index element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="projects" element={<Projects />} />
-        <Route path="resume" element={<Resume />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>
+    <AppLayout>
+      <Home id="home" />
+      <About id="about" />
+      <Projects id="projects" />
+      <Resume id="resume" />
+      <Contact id="contact" />
+    </AppLayout>
   );
 }
 

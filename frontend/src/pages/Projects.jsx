@@ -4,9 +4,9 @@ import SectionHeading from '../components/ui/SectionHeading';
 import ProjectCard from '../components/ui/ProjectCard';
 import { SITE_CONTENT } from '../constants/content';
 
-const Projects = () => {
+const Projects = ({ id }) => {
   return (
-    <section className="w-full py-20">
+    <section id={id} className="w-full py-20 min-h-screen">
       <Container>
         <SectionHeading>My Projects</SectionHeading>
         

@@ -1,34 +1,138 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import Container from '../components/ui/Container';
 import Button from '../components/ui/Button';
-import { SITE_CONTENT } from '../constants/content';
+import profileImage from '../../myprofile.png';
 
-const Home = () => {
-  const navigate = useNavigate();
+// Animation variants for staggered entrance
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2
+    }
+  }
+};
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+};
+
+const Home = ({ id }) => {
   return (
-    <section className="w-full flex-grow flex items-center justify-center py-20">
-      <Container className="text-center relative z-10 max-w-4xl">
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
-          <h1 className="text-4xl md:text-7xl font-bold tracking-tight mb-6 text-foreground">
-            {SITE_CONTENT.hero.titleStart} <br className="hidden md:block"/> 
-            <span className="text-accent">{SITE_CONTENT.hero.titleHighlight}</span>
-          </h1>
+    <section id={id} className="w-full min-h-screen flex items-center pt-20 pb-16 overflow-hidden relative">
+      <Container className="relative z-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
           
-          <p className="text-lg md:text-xl text-muted mx-auto mb-10 leading-relaxed font-normal max-w-2xl">
-            {SITE_CONTENT.hero.subtitle}
-          </p>
-          
-          <Button onClick={() => navigate('/projects')}>
-            {SITE_CONTENT.hero.ctaText}
-          </Button>
-        </motion.div>
+          {/* Left Column: Content */}
+          <motion.div 
+            className="flex-1 w-full max-w-2xl lg:pr-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            {/* Availability Indicator */}
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-3 px-3 py-1.5 rounded-full bg-surface border border-border mb-8 shadow-sm">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+              </span>
+              <span className="text-xs font-medium text-muted tracking-wide">
+                Available for selected freelance and full-time opportunities
+              </span>
+            </motion.div>
+
+            {/* Headings */}
+            <motion.p variants={itemVariants} className="text-lg md:text-xl text-accent font-medium mb-2 tracking-wide">
+              Hello, I'm
+            </motion.p>
+            <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl font-extrabold tracking-tighter text-foreground mb-6 leading-tight">
+              Muhammad Bilal.
+            </motion.h1>
+            
+            {/* Subtitles & Descriptions */}
+            <motion.h2 variants={itemVariants} className="text-xl md:text-2xl text-foreground font-semibold mb-4 leading-snug">
+              I build thoughtful digital products with modern web technologies.
+            </motion.h2>
+            <motion.p variants={itemVariants} className="text-lg text-muted mb-10 leading-relaxed max-w-lg">
+              I am a Full MERN stack developer focused on creating usable, performant, and highly maintainable web applications.
+            </motion.p>
+            
+            {/* Action Buttons */}
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <a href="#projects" className="w-full sm:w-auto">
+                <Button className="w-full sm:w-auto px-8 py-4 text-base">
+                  View my work
+                </Button>
+              </a>
+              <a href="#resume" className="w-full sm:w-auto">
+                <Button variant="outline" className="w-full sm:w-auto px-8 py-4 text-base">
+                  Download resume
+                </Button>
+              </a>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Column: Image & Decorations */}
+          <motion.div 
+            className="flex-1 w-full max-w-md lg:max-w-none relative flex justify-center lg:justify-end"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            {/* Decorative background shape */}
+            <motion.div 
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-accent-transparent blur-[80px] rounded-full -z-10"
+              animate={{ 
+                scale: [1, 1.05, 1],
+                opacity: [0.5, 0.7, 0.5]
+              }}
+              transition={{ 
+                duration: 8, 
+                repeat: Infinity,
+                ease: "easeInOut" 
+              }}
+            />
+
+            <div className="relative z-10 w-72 md:w-80 lg:w-96">
+              <motion.div 
+                className="relative w-full aspect-[4/5] overflow-visible"
+                animate={{ y: [0, -15, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <img 
+                  src={profileImage} 
+                  alt="Muhammad Bilal" 
+                  className="w-full h-full object-contain object-bottom drop-shadow-2xl"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "https://ui-avatars.com/api/?name=Muhammad+Bilal&size=512&background=random";
+                  }}
+                />
+              </motion.div>
+            </div>
+            
+            {/* Decorative orbiting element */}
+            <motion.div 
+              className="absolute top-10 right-10 lg:-right-4 w-12 h-12 rounded-full border border-accent flex items-center justify-center bg-background/50 backdrop-blur-sm shadow-sm"
+              animate={{ 
+                y: [0, 15, 0],
+                rotate: [0, 180, 360]
+              }}
+              transition={{ 
+                y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                rotate: { duration: 20, repeat: Infinity, ease: "linear" }
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+            </motion.div>
+
+          </motion.div>
+        </div>
       </Container>
     </section>
   );

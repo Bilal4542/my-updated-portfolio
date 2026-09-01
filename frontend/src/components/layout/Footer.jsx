@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="w-full border-t border-border mt-auto">
       <Container className="py-8 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-sm text-muted">
-          © {new Date().getFullYear()} Your Name. Crafted with care.
+          © {new Date().getFullYear()} Muhammad Bilal. Crafted with care.
         </p>
         <SocialLinks />
       </Container>

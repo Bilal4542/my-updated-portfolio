@@ -3,9 +3,9 @@ import Container from '../components/ui/Container';
 import SectionHeading from '../components/ui/SectionHeading';
 import Button from '../components/ui/Button';
 
-const Resume = () => {
+const Resume = ({ id }) => {
   return (
-    <section className="w-full py-20">
+    <section id={id} className="w-full py-20 min-h-screen">
       <Container className="max-w-4xl">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-4">
           <SectionHeading className="!mb-0">Resume</SectionHeading>

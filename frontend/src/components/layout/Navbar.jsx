@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SITE_CONTENT } from '../../constants/content';
+import Button from '../ui/Button';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('theme') === 'dark' || 
@@ -24,6 +26,36 @@ const Navbar = () => {
     }
   }, [isDark]);
 
+  // Track active section and scroll state
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    const observers = [];
+    const options = { threshold: 0.5 };
+
+    SITE_CONTENT.navLinks.forEach((link) => {
+      const id = link.path.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        const observer = new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(id);
+          }
+        }, options);
+        observer.observe(element);
+        observers.push(observer);
+      }
+    });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observers.forEach(observer => observer.disconnect());
+    };
+  }, []);
+
   // Close mobile menu on resize to desktop
   useEffect(() => {
     const handleResize = () => {
@@ -42,38 +74,50 @@ const Navbar = () => {
   const inactiveClassName = "text-muted hover:text-foreground transition-smooth";
 
   return (
-    <header className="sticky top-0 z-50 w-full glass-panel border-b border-border">
-      <nav className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-        <NavLink to="/" className="text-xl font-bold tracking-tighter text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm">
-          Portfolio.
-        </NavLink>
+    <header className={`sticky top-0 z-50 w-full glass-panel border-b border-border transition-all duration-300 ${isScrolled ? 'py-2' : 'py-5'}`}>
+      <nav className="max-w-6xl mx-auto px-6 flex items-center justify-between">
+        <a href="#home" className="text-xl font-bold tracking-tighter text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm">
+          Muhammad Bilal
+        </a>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           <ul className="flex space-x-8 text-sm font-medium">
-            {SITE_CONTENT.navLinks.map((link) => (
-              <li key={link.name}>
-                <NavLink 
-                  to={link.path} 
-                  className={({ isActive }) => `${isActive ? activeClassName : inactiveClassName} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm px-1 py-0.5`}
-                >
-                  {link.name}
-                </NavLink>
-              </li>
-            ))}
+            {SITE_CONTENT.navLinks.map((link) => {
+              const id = link.path.replace('#', '');
+              const isActive = activeSection === id;
+              return (
+                <li key={link.name}>
+                  <a 
+                    href={link.path} 
+                    className={`${isActive ? activeClassName : inactiveClassName} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm px-1 py-0.5 block`}
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
           
-          <button 
-            onClick={toggleTheme}
-            className="p-2 rounded-base bg-surface border border-border text-muted hover:text-foreground hover:border-muted transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-            aria-label="Toggle Dark Mode"
-          >
-            {isDark ? (
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-            )}
-          </button>
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={toggleTheme}
+              className="p-2 rounded-base bg-surface border border-border text-muted hover:text-foreground hover:border-muted transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              aria-label="Toggle Dark Mode"
+            >
+              {isDark ? (
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+              )}
+            </button>
+
+            <a href="#contact" tabIndex={-1}>
+              <Button variant="primary" className="py-2 px-5 text-sm">
+                Let's work together
+              </Button>
+            </a>
+          </div>
         </div>
 
         {/* Mobile Toggle */}
@@ -110,17 +154,29 @@ const Navbar = () => {
             className="md:hidden border-t border-border bg-background overflow-hidden"
           >
             <ul className="flex flex-col p-6 space-y-4 text-base font-medium">
-              {SITE_CONTENT.navLinks.map((link) => (
-                <li key={link.name}>
-                  <NavLink 
-                    to={link.path} 
-                    onClick={() => setIsOpen(false)}
-                    className={({ isActive }) => `block py-2 ${isActive ? activeClassName : inactiveClassName}`}
-                  >
-                    {link.name}
-                  </NavLink>
-                </li>
-              ))}
+              {SITE_CONTENT.navLinks.map((link) => {
+                const id = link.path.replace('#', '');
+                const isActive = activeSection === id;
+                return (
+                  <li key={link.name}>
+                    <a 
+                      href={link.path} 
+                      onClick={() => setIsOpen(false)}
+                      className={`block py-2 ${isActive ? activeClassName : inactiveClassName}`}
+                    >
+                      {link.name}
+                    </a>
+                  </li>
+                );
+              })}
+              
+              <li className="pt-4 border-t border-border">
+                <a href="#contact" onClick={() => setIsOpen(false)} className="block">
+                  <Button variant="primary" className="w-full text-center">
+                    Let's work together
+                  </Button>
+                </a>
+              </li>
             </ul>
           </motion.div>
         )}

@@ -4,9 +4,9 @@ import SectionHeading from '../components/ui/SectionHeading';
 import Button from '../components/ui/Button';
 import { SITE_CONTENT } from '../constants/content';
 
-const Contact = () => {
+const Contact = ({ id }) => {
   return (
-    <section className="w-full py-20">
+    <section id={id} className="w-full py-20 min-h-screen flex items-center">
       <Container className="max-w-2xl text-center">
         <SectionHeading className="mb-6">{SITE_CONTENT.contact.heading}</SectionHeading>
         

@@ -1,12 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+
 import { motion } from 'framer-motion';
 import Container from '../components/ui/Container';
 import Button from '../components/ui/Button';
 
 const NotFound = () => {
-  const navigate = useNavigate();
-
   return (
     <section className="w-full flex-grow flex items-center justify-center py-20">
       <Container className="text-center max-w-lg">
@@ -20,9 +18,11 @@ const NotFound = () => {
           <p className="text-muted mb-8">
             The page you are looking for doesn't exist or has been moved.
           </p>
-          <Button onClick={() => navigate('/')}>
-            Return Home
-          </Button>
+          <a href="#home">
+            <Button>
+              Return Home
+            </Button>
+          </a>
         </motion.div>
       </Container>
     </section>
