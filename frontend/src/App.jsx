@@ -1,19 +1,16 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import AppLayout from './components/layout/AppLayout';
-import Home from './pages/Home';
-import About from './pages/About';
-import Projects from './pages/Projects';
-import Resume from './pages/Resume';
-import Contact from './pages/Contact';
+import PortfolioHome from './pages/PortfolioHome';
+import ProjectDetail from './pages/ProjectDetail';
 
 function App() {
   return (
     <AppLayout>
-      <Home id="home" />
-      <About id="about" />
-      <Projects id="projects" />
-      <Resume id="resume" />
-      <Contact id="contact" />
+      <Routes>
+        <Route path="/" element={<PortfolioHome />} />
+        <Route path="/projects/:slug" element={<ProjectDetail />} />
+      </Routes>
     </AppLayout>
   );
 }

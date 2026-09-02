@@ -57,6 +57,16 @@ export const SITE_CONTENT = {
       shortDescription: "A responsive and modern travel and tourism webapp built with MERN Stack Technology.",
       fullDescription: "Carthage Travel is a comprehensive platform designed for tourism agencies to manage bookings, showcase destinations, and handle user inquiries efficiently. It features a modern interface with complex search filters and a dedicated admin dashboard for managing tour packages.",
       imageUrl: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=1200&auto=format&fit=crop",
+      gallery: [
+        "https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=800&auto=format&fit=crop"
+      ],
+      features: [
+        "Dynamic Tour Package Generator based on user preferences.",
+        "Interactive Map integration for visual itinerary planning.",
+        "Secure Role-Based Access Control for agency admins vs standard users.",
+        "Real-time booking availability and calendar synchronization."
+      ],
       technologies: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
       category: "Web Application",
       liveUrl: "https://carthagetravel.com/",
@@ -73,6 +83,16 @@ export const SITE_CONTENT = {
       shortDescription: "A responsive modern platform for Amazon, Shopify, and e-commerce sellers to buy products in bulk.",
       fullDescription: "SourcingBytes acts as a critical bridge between manufacturers and e-commerce storefront owners. It offers advanced product filtering, an inquiry management system, and a dedicated user portal for tracking bulk orders from sourcing to delivery.",
       imageUrl: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1200&auto=format&fit=crop",
+      gallery: [
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop"
+      ],
+      features: [
+        "Advanced bulk-pricing calculator with tiered discounts.",
+        "Real-time B2B messaging system between suppliers and retailers.",
+        "Automated PDF generation for quotes and proforma invoices.",
+        "Customizable user dashboards for tracking container shipping statuses."
+      ],
       technologies: ["Vue.js", "Laravel", "PHP", "MySQL", "Bootstrap"],
       category: "B2B E-Commerce",
       liveUrl: "https://sourcingbytes.com/",
@@ -89,6 +109,16 @@ export const SITE_CONTENT = {
       shortDescription: "A professional platform offering a suite of utility tools like invoice generators, URL shorteners, and calculators.",
       fullDescription: "ToolsMarket is a highly accessible web application that consolidates essential micro-tools into a single dashboard. Users can generate professional invoices, shorten URLs with tracking, and calculate GPA or BMI securely with full user authentication.",
       imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
+      gallery: [
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop"
+      ],
+      features: [
+        "Fully customizable Invoice Generator with export to PDF.",
+        "Robust URL shortener with click analytics and geolocation tracking.",
+        "Unified authentication system for saving user history.",
+        "Extensible plugin architecture for rapidly adding new calculators."
+      ],
       technologies: ["React", "Node.js", "Express.js", "MongoDB", "JWT"],
       category: "SaaS Platform",
       liveUrl: "https://toolsmarket.app/",
@@ -105,6 +135,16 @@ export const SITE_CONTENT = {
       shortDescription: "A professional and minimal catalog website for precision gems and minerals.",
       fullDescription: "Pre-Gems is a bespoke digital storefront designed to showcase high-value precision gems and minerals. The focus was heavily on a minimalist aesthetic, ensuring the high-resolution imagery of the gems stood out without distraction.",
       imageUrl: "https://images.unsplash.com/photo-1606722590583-6951b5ea92ad?q=80&w=1200&auto=format&fit=crop",
+      gallery: [
+        "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1599643478524-fb66f70a0066?q=80&w=800&auto=format&fit=crop"
+      ],
+      features: [
+        "Ultra-fast Server-Side Rendering via Next.js.",
+        "High-performance image gallery with lazy loading and blur-up effects.",
+        "Bespoke Framer Motion page transitions to mimic physical luxury brochures.",
+        "Headless CMS integration for easy inventory management by the client."
+      ],
       technologies: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
       category: "Portfolio & Catalog",
       liveUrl: "https://www.pre-gems.com/",
@@ -121,6 +161,16 @@ export const SITE_CONTENT = {
       shortDescription: "E-commerce platform with an advanced product catalog, payment integration, and user management.",
       fullDescription: "Rains is a fully-featured online retail platform supporting thousands of SKUs. It includes a robust shopping cart, seamless Stripe payment integration, order history tracking, and a secure user management portal.",
       imageUrl: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200&auto=format&fit=crop",
+      gallery: [
+        "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?q=80&w=800&auto=format&fit=crop"
+      ],
+      features: [
+        "Persistent Shopping Cart utilizing Redux and LocalStorage.",
+        "Secure checkout flow powered by Stripe Elements.",
+        "Advanced inventory management preventing over-ordering.",
+        "User profile system with saved addresses and past order history."
+      ],
       technologies: ["React", "Node.js", "PostgreSQL", "Stripe API", "Redux"],
       category: "E-Commerce",
       liveUrl: "https://rains.com/",
@@ -137,6 +187,16 @@ export const SITE_CONTENT = {
       shortDescription: "A collaborative Kanban-style project management tool for remote engineering teams.",
       fullDescription: "TaskFlow is an enterprise-grade project management tool that allows teams to organize work visually. It supports real-time updates via WebSockets, drag-and-drop task management, and detailed productivity analytics.",
       imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1200&auto=format&fit=crop",
+      gallery: [
+        "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=800&auto=format&fit=crop"
+      ],
+      features: [
+        "Real-time board synchronization across multiple clients using Socket.io.",
+        "Intuitive Drag and Drop interface for columns and tasks.",
+        "Activity log tracking who made which changes and when.",
+        "Detailed burndown charts and sprint productivity analytics."
+      ],
       technologies: ["React", "TypeScript", "Socket.io", "Node.js", "MongoDB"],
       category: "Web Application",
       liveUrl: "https://taskflow-demo.app/",

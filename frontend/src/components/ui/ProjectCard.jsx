@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const ProjectCard = ({ project }) => {
   return (
@@ -12,13 +13,15 @@ const ProjectCard = ({ project }) => {
       className="glass-panel rounded-base p-6 flex flex-col h-full hover:shadow-xl hover:border-accent/30 transition-shadow"
     >
       {project.imageUrl && (
-        <div className="w-full h-48 mb-6 overflow-hidden rounded-md border border-border/50">
-          <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
-        </div>
+        <Link to={`/projects/${project.slug}`} className="block w-full h-48 mb-6 overflow-hidden rounded-md border border-border/50 group">
+          <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        </Link>
       )}
       <div className="mb-4">
-        <h3 className="text-xl font-bold text-foreground mb-2 flex items-center justify-between">
-          {project.title}
+        <h3 className="text-xl font-bold text-foreground mb-2 flex items-center justify-between group-hover:text-accent transition-colors">
+          <Link to={`/projects/${project.slug}`} className="hover:text-accent transition-colors">
+            {project.title}
+          </Link>
           {project.year && <span className="text-xs font-normal text-muted bg-surface px-2 py-1 rounded-sm border border-border/50">{project.year}</span>}
         </h3>
         <p className="text-muted text-sm leading-relaxed">{project.shortDescription}</p>
@@ -56,6 +59,12 @@ const ProjectCard = ({ project }) => {
               Source Code
             </a>
           )}
+          <Link 
+            to={`/projects/${project.slug}`} 
+            className="flex items-center gap-2 text-sm font-medium px-4 py-2 bg-surface border border-border text-foreground rounded-md hover:border-accent hover:text-accent transition-colors"
+          >
+            Details &rarr;
+          </Link>
         </div>
       </div>
     </motion.article>
