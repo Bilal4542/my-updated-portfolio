@@ -37,7 +37,6 @@ const Home = ({ id }) => {
             {/* Availability Indicator */}
             <motion.div variants={itemVariants} className="inline-flex items-center gap-3 px-3 py-1.5 rounded-full bg-surface border border-border mb-8 shadow-sm">
               <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
               </span>
               <span className="text-xs font-medium text-muted tracking-wide">
@@ -86,24 +85,11 @@ const Home = ({ id }) => {
           >
             {/* Decorative background shape */}
             <motion.div 
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-accent-transparent blur-[80px] rounded-full -z-10"
-              animate={{ 
-                scale: [1, 1.05, 1],
-                opacity: [0.5, 0.7, 0.5]
-              }}
-              transition={{ 
-                duration: 8, 
-                repeat: Infinity,
-                ease: "easeInOut" 
-              }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-accent-transparent blur-[80px] rounded-full -z-10 opacity-50"
             />
 
             <div className="relative z-10 w-72 md:w-80 lg:w-96">
-              <motion.div 
-                className="relative w-full aspect-[4/5] overflow-visible"
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              >
+              <div className="relative w-full aspect-[4/5] overflow-visible">
                 <img 
                   src={profileImage} 
                   alt="Muhammad Bilal" 
@@ -113,20 +99,12 @@ const Home = ({ id }) => {
                     e.target.src = "https://ui-avatars.com/api/?name=Muhammad+Bilal&size=512&background=random";
                   }}
                 />
-              </motion.div>
+              </div>
             </div>
             
-            {/* Decorative orbiting element */}
+            {/* Decorative element */}
             <motion.div 
               className="absolute top-10 right-10 lg:-right-4 w-12 h-12 rounded-full border border-accent flex items-center justify-center bg-background/50 backdrop-blur-sm shadow-sm"
-              animate={{ 
-                y: [0, 15, 0],
-                rotate: [0, 180, 360]
-              }}
-              transition={{ 
-                y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-                rotate: { duration: 20, repeat: Infinity, ease: "linear" }
-              }}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
             </motion.div>

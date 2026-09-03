@@ -35,6 +35,8 @@ export const SITE_CONTENT = {
     heading: "Get In Touch",
     text: "I'm currently open to new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!",
     email: "mbilal45422@gmail.com",
+    location: "Peshawar, Pakistan",
+    availability: "Monday - Saturday",
     buttonText: "Say Hello",
   },
   socialLinks: [
@@ -49,6 +51,89 @@ export const SITE_CONTENT = {
     { name: "Resume", path: "#resume" },
     { name: "Contact", path: "#contact" },
   ],
+  resume: {
+    heading: "Experience",
+    summary: "I build responsive, accessible, and high-performance web applications. I focus on writing clean, scalable code and creating seamless digital experiences that drive measurable business outcomes.",
+    experience: [
+      {
+        id: 1,
+        role: "MERN Stack Developer (Paid Intern)",
+        company: "SkyraSoft Software House",
+        location: "Peshawar, Pakistan",
+        dates: "Mar 2026 – Sep 2026",
+        achievements: [
+          "Completed 6-month paid internship hired through the Pakistan Software Export Board (PSEB) internship program.",
+          "Developed and maintained web applications using MongoDB, Express.js, React.js, and Node.js.",
+          "Collaborated with senior developers on live client projects, gaining hands-on industry experience.",
+          "Assisted in debugging, testing, and optimizing application features for better performance.",
+          "Contributed to both front-end and back-end development tasks under the MERN stack architecture."
+        ]
+      },
+      {
+        id: 2,
+        role: "Team Lead / Full Stack Developer",
+        company: "Tech Pioneers",
+        location: "Peshawar, Pakistan",
+        dates: "Jan 2025 – Feb 2026",
+        achievements: [
+          "Led a cross-functional development team to architect and deliver scalable web applications using the MERN stack.",
+          "Mentored junior developers through comprehensive code reviews, pair programming, and technical workshops.",
+          "Implemented CI/CD pipelines that reduced deployment times and improved overall release stability.",
+          "Designed and optimized RESTful APIs and MongoDB database schemas to support high-traffic user volumes."
+        ]
+      },
+      {
+        id: 3,
+        role: "Junior MERN Stack Developer",
+        company: "Bright Code Lab",
+        location: "Peshawar, Pakistan",
+        dates: "Sep 2023 – Dec 2024",
+        achievements: [
+          "Contributed to the full-stack development of client web applications using MongoDB, Express.js, React.js, and Node.js.",
+          "Integrated third-party APIs and payment gateways to expand platform capabilities and streamline user workflows.",
+          "Collaborated closely with UI/UX designers to translate Figma mockups into responsive, accessible React components.",
+          "Assisted in identifying and resolving critical backend bugs, reducing system downtime."
+        ]
+      },
+      {
+        id: 4,
+        role: "React.js Developer",
+        company: "Bingtechs Solution",
+        location: "Peshawar, Pakistan",
+        dates: "Aug 2022 – Aug 2023",
+        achievements: [
+          "Focused on building dynamic, responsive, and highly user-friendly web interfaces using React.js and modern CSS frameworks.",
+          "Managed complex frontend application state using Redux and Context API for seamless data flow.",
+          "Optimized application performance by implementing lazy loading, code splitting, and memoization techniques.",
+          "Ensured cross-browser compatibility and mobile responsiveness across all major device viewports."
+        ]
+      }
+    ],
+    education: [
+      {
+        id: 1,
+        degree: "Bachelor in Software Engineering",
+        institution: "Islamia College University Peshawar",
+        location: "Peshawar, Pakistan",
+        dates: "Oct 2020 – Jul 2024"
+      },
+      {
+        id: 2,
+        degree: "Intermediate (FSC Pre-Engineering)",
+        institution: "Hadaf College Peshawar",
+        location: "Peshawar, Pakistan",
+        dates: "Aug 2018 – Apr 2020"
+      }
+    ],
+    certifications: [
+      {
+        id: 1,
+        name: "[Certification Name, e.g., AWS Certified Developer]",
+        issuer: "[Issuing Organization]",
+        date: "[Month Year]"
+      }
+    ]
+  },
   projects: [
     {
       id: 1,
