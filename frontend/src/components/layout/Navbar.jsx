@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 import { SITE_CONTENT } from '../../constants/content';
 import Button from '../ui/Button';
 
@@ -26,35 +27,41 @@ const Navbar = () => {
     }
   }, [isDark]);
 
+  const location = useLocation();
+
   // Track active section and scroll state
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    const observers = [];
-    const options = { threshold: 0.5 };
+      
+      // Only track active sections if we are on the home page
+      if (location.pathname !== '/') return;
 
-    SITE_CONTENT.navLinks.forEach((link) => {
-      const id = link.path.replace('#', '');
-      const element = document.getElementById(id);
-      if (element) {
-        const observer = new IntersectionObserver(([entry]) => {
-          if (entry.isIntersecting) {
-            setActiveSection(id);
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
+
+      let currentActive = 'home';
+      SITE_CONTENT.navLinks.forEach((link) => {
+        const id = link.path.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetHeight = element.offsetHeight;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            currentActive = id;
           }
-        }, options);
-        observer.observe(element);
-        observers.push(observer);
-      }
-    });
+        }
+      });
+      setActiveSection(currentActive);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Trigger once on mount to set initial state
+    setTimeout(handleScroll, 100); 
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      observers.forEach(observer => observer.disconnect());
     };
-  }, []);
+  }, [location.pathname]);
 
   // Close mobile menu on resize to desktop
   useEffect(() => {
@@ -85,11 +92,15 @@ const Navbar = () => {
           <ul className="flex space-x-8 text-sm font-medium">
             {SITE_CONTENT.navLinks.map((link) => {
               const id = link.path.replace('#', '');
-              const isActive = activeSection === id;
+              // Make sure to match active states only if on home page
+              const isActive = activeSection === id && location.pathname === '/';
+              // Handle routing from detail pages back to home page anchors
+              const href = location.pathname === '/' ? link.path : `/${link.path}`;
+              
               return (
                 <li key={link.name}>
                   <a 
-                    href={link.path} 
+                    href={href} 
                     className={`${isActive ? activeClassName : inactiveClassName} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm px-1 py-0.5 block`}
                   >
                     {link.name}
@@ -112,7 +123,7 @@ const Navbar = () => {
               )}
             </button>
 
-            <a href="#contact" tabIndex={-1}>
+            <a href={location.pathname === '/' ? '#contact' : '/#contact'} tabIndex={-1}>
               <Button variant="primary" className="py-2 px-5 text-sm">
                 Let's work together
               </Button>
@@ -156,11 +167,13 @@ const Navbar = () => {
             <ul className="flex flex-col p-6 space-y-4 text-base font-medium">
               {SITE_CONTENT.navLinks.map((link) => {
                 const id = link.path.replace('#', '');
-                const isActive = activeSection === id;
+                const isActive = activeSection === id && location.pathname === '/';
+                const href = location.pathname === '/' ? link.path : `/${link.path}`;
+                
                 return (
                   <li key={link.name}>
                     <a 
-                      href={link.path} 
+                      href={href} 
                       onClick={() => setIsOpen(false)}
                       className={`block py-2 ${isActive ? activeClassName : inactiveClassName}`}
                     >
@@ -171,7 +184,7 @@ const Navbar = () => {
               })}
               
               <li className="pt-4 border-t border-border">
-                <a href="#contact" onClick={() => setIsOpen(false)} className="block">
+                <a href={location.pathname === '/' ? '#contact' : '/#contact'} onClick={() => setIsOpen(false)} className="block">
                   <Button variant="primary" className="w-full text-center">
                     Let's work together
                   </Button>
