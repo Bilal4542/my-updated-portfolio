@@ -65,6 +65,37 @@
   body {
     @apply bg-background text-foreground antialiased transition-colors duration-300;
   }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+  }
+
+  /* Firefox Scrollbar */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) var(--color-background);
+  }
+
+  /* Premium Text Selection */
+  ::selection {
+    background-color: var(--color-accent);
+    color: #ffffff;
+  }
 }
 
 @layer utilities {
